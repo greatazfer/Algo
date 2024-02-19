@@ -1,0 +1,134 @@
+# A1, Azfer Azeem, Code
+
+# Arrays
+pid = ['57353', '40374', '34863', '18086', '16041', '43566', '69260', '30895', '19897', '87296', '68215', '68097', '26556', 
+             '30483', '62422', '22806', '24976', '30631', '27939', '41355', '94162', '28710', '90291', '20368', '68960', '40852', 
+             '97895', '96314', '85719', '98625', '66208', '86128', '10889', '82777', '43451', '12848', '17646', '85197', '13471', 
+             '66237', '30251', '46944', '93533', '95090', '98827', '64489', '39148', '25425', '69525', '44574']
+
+pnames = ['Camera SBBHC', 'Smartphone ILGCU', 'Biography XPESK', 'Shirt ZQLTI', 'Jacket OTBKQ', 'Mystery COKPK', 'Toaster FODKJ', 
+                'Knife Set KGFUF', 'Blender DPKLR', 'Skirt IRTZX', 'Laptop QLBQC', 'Camera SGSRZ', 'Novel METLI', 'Knife Set WRSZZ', 
+                'Camera VFQWS', 'Smartwatch VVFNT', 'Pants YZMAK', 'Headphones JFGYQ', 'Textbook TWQKZ', 'Headphones JOUXM', 'Laptop WRJOZ', 
+                'Dress FRSMO', 'Pants TIPUD', 'Shirt FQFPK', 'Blender OMDPS', 'Novel IRROY', 'Blender KSJHL', 'Cutting Board LUICX', 
+                'Laptop GZORF', 'Mystery BOPTP', 'Blender GCZSK', 'Biography ASTVE', 'Shirt DNRZU', 'Shirt OZWXU', 'Mixer CKVJQ', 
+                'Toaster VZXUE', 'Biography BPWXR', 'Cutting Board IJVPP', 'Knife Set TPCMO', 'Headphones LTPLK', 'Pants HCBKI', 
+                'Smartwatch QNALX', 'Novel WOHSN', 'Cutting Board RBACL', 'Shirt RSQGL', 'Novel EFPYC', 'Cutting Board OYHCV', 
+                'Mystery MGSPG', 'Camera XROCD', 'Knife Set ASRHX']
+
+pprice = [   546.88, 947.54, 287.31, 439.07, 986.73, 836.57, 867.6, 385.77, 488.62, 261.08, 404.21, 36.39, 376.45, 55.97, 382.69, 203.55, 
+                449.56, 115.08, 108.5, 211.57, 956.53, 879.09, 853.38, 83.19, 720.06, 603.68, 123.25, 628.29, 641.33, 160.68, 161.83, 90.44, 
+                316.48, 790.46, 379.5, 867.97, 424.83, 986.89, 831.9, 995.13, 450.68, 647.08, 516.39, 568.63, 231.54, 502.61, 220.15, 783.17, 
+                76.05, 64.62]
+
+pcatagory = ['Electronics', 'Electronics', 'Books', 'Clothing', 'Clothing', 'Books', 'Home & Kitchen', 'Home & Kitchen', 'Home & Kitchen', 
+                   'Clothing', 'Electronics', 'Electronics', 'Books', 'Home & Kitchen', 'Electronics', 'Electronics', 'Clothing', 'Electronics', 
+                   'Books', 'Electronics', 'Electronics', 'Clothing', 'Clothing', 'Clothing', 'Home & Kitchen', 'Books', 'Home & Kitchen', 
+                   'Home & Kitchen', 'Electronics', 'Books', 'Home & Kitchen', 'Books', 'Clothing', 'Clothing', 'Home & Kitchen', 
+                   'Home & Kitchen', 'Books', 'Home & Kitchen', 'Home & Kitchen', 'Electronics', 'Clothing', 'Electronics', 'Books', 
+                   'Home & Kitchen', 'Clothing', 'Books', 'Home & Kitchen', 'Books', 'Electronics', 'Home & Kitchen']
+
+# variables
+# Define the path to your file
+file_path = 'C:/Users/great/OneDrive/Desktop/DC/Semester 4/OTU - Algo & Data Structures/Assignment 1/product_data.txt'
+
+
+
+###
+        
+# Initialize  list to store  data
+product_data = []
+
+# read  data
+with open(file_path, 'r') as file:
+    for line in file:
+        cleaned_line = line.strip()
+        components = cleaned_line.split(',')
+        components = [component.strip() for component in components]
+        product_data.append(components)
+
+# At this point, product_data contains lists of components for each product
+print(product_data)
+
+
+
+
+# Assuming the data is already loaded into a list of lists named 'product_data'
+# from the previous explanation.
+class Product:
+    def __init__(self, prod_id, name, price, category):
+        self.prod_id = prod_id
+        self.name = name
+        self.price = price
+        self.category = category
+
+# list of Product objects
+prod = [Product(*data) for data in product_data]
+
+
+print(prod)
+
+
+
+
+
+
+def insert_product(prod, new_product):
+    prod.append(new_product)
+
+def update_product(prod, prod_id, **updates):
+    for product in prod:
+        if product.prod_id == prod_id:
+            product.__dict__.update(updates)
+            return True
+    return False 
+
+def delete_product(prod, prod_id):
+    prod[:] = [product for product in prod if product.prod_id != prod_id]
+
+def search_products(prod, **search_terms):
+    results = []
+    for product in prod:
+        if all(getattr(product, key) == value for key, value in search_terms.items()):
+            results.append(product)
+    return results
+
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
